@@ -24,8 +24,8 @@ const useAllMedia = () => {
 
 const useSingleMedia = (id) => {
   const [data, setData] = useState({});
-  const fetchUrl = async (id) => {
-    const response = await fetch(baseUrl + 'media/' + id);
+  const fetchUrl = async (fileid) => {
+    const response = await fetch(baseUrl + 'media/' + fileid);
     const item = await response.json();
     setData(item);
   };
@@ -37,8 +37,74 @@ const useSingleMedia = (id) => {
   return data;
 };
 
+const register = async (inputs) => {
+  const fetchOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(inputs),
+  };
+  try {
+    const response = await fetch(baseUrl + 'users', fetchOptions);
+    const json = await response.json();
+    if (!response.ok) throw new Error(json.message + ': ' + json.error);
+    return json;
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
+
+const login = async (inputs) => {
+  const fetchOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(inputs),
+  };
+  try {
+    const response = await fetch(baseUrl + 'login', fetchOptions);
+    const json = await response.json();
+    if (!response.ok) throw new Error(json.message + ': ' + json.error);
+    return json;
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
+
+const checkUserAvailable = async (name) => {
+  try {
+    const response = await fetch(baseUrl + 'users/username/' + name);
+    const json = await response.json();
+    if (!response.ok) throw new Error(json.message + ': ' + json.error);
+    return json;
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
+
+const checkToken = async (token) => {
+  const fetchOptions = {
+    headers: {
+      'x-access-token': token,
+    },
+  };
+  try {
+    const response = await fetch(baseUrl + 'users/user', fetchOptions);
+    const json = await response.json();
+    if (!response.ok) throw new Error(json.message + ': ' + json.error);
+    return json;
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
 
 export {
   useAllMedia,
   useSingleMedia,
+  register,
+  login,
+  checkUserAvailable,
+  checkToken,
 };

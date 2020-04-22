@@ -16,6 +16,5 @@ const MediaTable = () => {
     </table>
   );
 };
-MediaTable.propTypes = {};
 
 export default MediaTable;

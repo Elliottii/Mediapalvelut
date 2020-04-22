@@ -4,6 +4,7 @@ import {useSingleMedia} from '../hooks/ApiHooks';
 
 const mediaUrl = 'http://media.mw.metropolia.fi/wbma/uploads/';
 
+
 const Single = ({match}) => {
   console.log('match', match.params.id);
   const file = useSingleMedia(match.params.id);

@@ -1,11 +1,4 @@
-table {
-  width: 40rem;
-  border-spacing: 1rem;
-  margin: auto;
-}
-
-td {
-  padding: 1rem;
-  border-bottom: #ccc 1px solid;
+main {
+  padding-top: 5rem;
 }
 

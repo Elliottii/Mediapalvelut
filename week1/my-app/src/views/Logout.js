@@ -3,6 +3,7 @@ import {Redirect} from 'react-router-dom';
 import {MediaContext} from '../contexts/MediaContext';
 
 const Logout = () => {
+  // eslint-disable-next-line no-unused-vars
   const [user, setUser] = useContext(MediaContext);
 
   useEffect(() => {
@@ -16,3 +17,4 @@ const Logout = () => {
 };
 
 export default Logout;
+
